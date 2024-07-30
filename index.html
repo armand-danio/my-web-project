@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Assessment</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 110vh;
+            box-sizing: border-box;
+            overflow-y: auto; /* Enable vertical scrolling */        
+	}
+        h2 {
+            text-align: center;
+        }
+        table {
+            width: 20%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 5px;
+        }
+        th {
+            text-align: left;
+        }
+        td:nth-child(2) { 
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Table 1</h2>
+<table id="table1">
+    <tr>
+        <th>Index #</th>
+        <th>Value</th>
+    </tr>
+</table>
+
+<h2>Table 2</h2>
+<table id="table2">
+    <tr>
+        <th>Category</th>
+        <th>Value</th>
+    </tr>
+</table>
+
+<script>
+    const data = [
+        { index: 'A1', value: 41 },
+        { index: 'A2', value: 18 },
+        { index: 'A3', value: 21 },
+        { index: 'A4', value: 63 },
+        { index: 'A5', value: 2 },
+        { index: 'A6', value: 53 },
+        { index: 'A7', value: 5 },
+        { index: 'A8', value: 57 },
+        { index: 'A9', value: 60 },
+        { index: 'A10', value: 93 },
+        { index: 'A11', value: 28 },
+        { index: 'A12', value: 3 },
+        { index: 'A13', value: 90 },
+        { index: 'A14', value: 39 },
+        { index: 'A15', value: 80 },
+        { index: 'A16', value: 88 },
+        { index: 'A17', value: 49 },
+        { index: 'A18', value: 60 },
+        { index: 'A19', value: 26 },
+        { index: 'A20', value: 28 }
+    ];
+
+    const table1 = document.getElementById('table1');
+
+    data.forEach(item => {
+        const row = table1.insertRow();
+        const cell1 = row.insertCell(0);
+        const cell2 = row.insertCell(1);
+        cell1.innerHTML = item.index;
+        cell2.innerHTML = item.value;
+    });
+
+    // Calculate values for Table 2
+    const A5 = data.find(item => item.index === 'A5').value;
+    const A20 = data.find(item => item.index === 'A20').value;
+    const A15 = data.find(item => item.index === 'A15').value;
+    const A7 = data.find(item => item.index === 'A7').value;
+    const A13 = data.find(item => item.index === 'A13').value;
+    const A12 = data.find(item => item.index === 'A12').value;
+
+    const table2Data = [
+        { category: 'Alpha', value: A5 + A20 },
+        { category: 'Beta', value: A15 / A7 },
+        { category: 'Charlie', value: A13 * A12 }
+    ];
+
+    const table2 = document.getElementById('table2');
+
+    table2Data.forEach(item => {
+        const row = table2.insertRow();
+        const cell1 = row.insertCell(0);
+        const cell2 = row.insertCell(1);
+        cell1.innerHTML = item.category;
+        cell2.innerHTML = item.value.toFixed(2);
+    });
+</script>
+
+</body>
+</html>
